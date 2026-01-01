@@ -1,0 +1,111 @@
+==========================================
+HOW TO OPEN APPS ON BLANK DESKTOP
+==========================================
+
+Even if you see a blank desktop, you can still open apps!
+
+==========================================
+METHOD 1: Activities Overview (Easiest)
+==========================================
+
+1. Press: Super key (Windows key)
+   OR
+2. Move mouse to top-left corner of screen
+   OR
+3. Press: Alt + F1
+
+This opens Activities Overview where you can:
+- See all applications
+- Search for apps
+- Access workspaces
+
+Type any app name to search and open it!
+
+==========================================
+METHOD 2: Keyboard Shortcuts
+==========================================
+
+Open Terminal:
+- Ctrl + Alt + T
+
+Open Files (File Manager):
+- Super + E
+- OR: Press Super, type "files", press Enter
+
+Open Settings:
+- Press Super, type "settings", press Enter
+
+Open Web Browser:
+- Press Super, type "firefox" or "chrome", press Enter
+
+==========================================
+METHOD 3: Right-Click Desktop
+==========================================
+
+Right-click on the blank desktop:
+- "Open Terminal Here"
+- "New Folder"
+- "New Document"
+
+==========================================
+METHOD 4: From Terminal (If You Can Open It)
+==========================================
+
+Once terminal is open, you can launch any app:
+
+# Open file manager
+nautilus &
+
+# Open text editor
+gedit &
+
+# Open web browser
+firefox &
+# OR
+google-chrome &
+
+# Open settings
+gnome-control-center &
+
+# List all installed apps
+ls /usr/share/applications/ | head -20
+
+==========================================
+METHOD 5: Fix Desktop Icons (From Terminal)
+==========================================
+
+If you can open terminal (Ctrl+Alt+T), run:
+
+bash /home/petspot/odoo-19/fix_desktop_icons.sh
+
+This will:
+- Enable desktop icons
+- Restart GNOME Shell
+- Make icons visible
+
+==========================================
+METHOD 6: Restart Desktop Session
+==========================================
+
+From terminal:
+sudo systemctl restart lightdm
+
+This will log you out and restart the desktop.
+
+==========================================
+QUICK TEST: Can You See This?
+==========================================
+
+1. Press Super key (Windows key)
+   → Should show Activities Overview
+
+2. Type "terminal"
+   → Should show Terminal app
+
+3. Press Enter
+   → Terminal should open
+
+If this works, your desktop is fine - just icons aren't showing!
+
+==========================================
+

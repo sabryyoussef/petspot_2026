@@ -1,0 +1,90 @@
+==========================================
+QUICK FIX: Ubuntu Desktop - No Apps Showing
+==========================================
+
+The desktop is loading but apps/icons aren't visible.
+
+==========================================
+SOLUTION 1: Open Terminal (Try This First)
+==========================================
+
+On the blank desktop:
+1. Press: Ctrl + Alt + T
+   OR
+2. Press: Super (Windows key) + T
+   OR  
+3. Right-click on desktop → "Open Terminal Here"
+
+If terminal opens, run:
+bash /home/petspot/odoo-19/fix_desktop_icons.sh
+
+==========================================
+SOLUTION 2: Open Activities Overview
+==========================================
+
+1. Press: Super key (Windows key)
+   OR
+2. Move mouse to top-left corner
+   OR
+3. Press: Alt + F1
+
+This should show:
+- Applications menu
+- Search bar
+- Workspaces
+
+Type "terminal" in search and open it.
+
+==========================================
+SOLUTION 3: Restart GNOME Shell
+==========================================
+
+1. Press: Alt + F2
+2. Type: r
+3. Press: Enter
+
+This restarts GNOME Shell.
+
+==========================================
+SOLUTION 4: From SSH (If Connected)
+==========================================
+
+Run these commands:
+
+# Enable desktop icons
+DISPLAY=:0 gnome-extensions enable ding@rastersoft.com
+DISPLAY=:0 gsettings set org.gnome.shell.extensions.ding show-home true
+
+# Restart GNOME Shell
+DISPLAY=:0 killall -SIGQUIT gnome-shell
+
+==========================================
+SOLUTION 5: Full Desktop Reset
+==========================================
+
+If nothing works, reset GNOME settings:
+
+# Backup first
+cp -r ~/.config/gnome-shell ~/.config/gnome-shell.backup
+
+# Reset
+dconf reset -f /org/gnome/shell/
+dconf reset -f /org/gnome/desktop/
+
+# Restart
+sudo systemctl restart lightdm
+
+==========================================
+SOLUTION 6: Use Terminal Mode
+==========================================
+
+If desktop won't work, use terminal:
+
+1. Press: Ctrl + Alt + F1 (or F2-F6)
+2. Login with username/password
+3. Use terminal commands
+
+To return to desktop: Ctrl + Alt + F7
+
+==========================================
+

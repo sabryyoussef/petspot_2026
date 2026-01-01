@@ -1,0 +1,55 @@
+==========================================
+FIX SSH CONFIG ERROR
+==========================================
+
+Your SSH key was successfully copied! ✅
+But there's an error in your SSH config file.
+
+Error: "unsupported option 'yesHost'" on line 84
+
+==========================================
+FIX IT:
+==========================================
+
+# Option 1: Check and fix the config file
+nano ~/.ssh/config
+
+# Look for line 84 and find "yesHost" - it's probably a typo
+# Common typos:
+# - "yesHost" should be removed or fixed
+# - Might be "Host" with extra characters
+# - Or a comment that's malformed
+
+# Option 2: Backup and check the file
+cp ~/.ssh/config ~/.ssh/config.backup
+cat ~/.ssh/config | grep -n "yesHost"
+
+# Option 3: Add the odoo-server config at the END of the file
+# (to avoid the problematic line 84)
+echo "" >> ~/.ssh/config
+echo "Host odoo-server" >> ~/.ssh/config
+echo "    HostName 192.168.100.64" >> ~/.ssh/config
+echo "    User petspot" >> ~/.ssh/config
+echo "    IdentityFile ~/.ssh/id_ed25519" >> ~/.ssh/config
+
+# Then test
+ssh odoo-server
+
+==========================================
+QUICK FIX (if you want to skip the error):
+==========================================
+
+# Just add the config at the end, ignoring the error line
+cat >> ~/.ssh/config << 'EOF'
+
+Host odoo-server
+    HostName 192.168.100.64
+    User petspot
+    IdentityFile ~/.ssh/id_ed25519
+EOF
+
+# Test connection (should work despite the error on line 84)
+ssh odoo-server
+
+==========================================
+

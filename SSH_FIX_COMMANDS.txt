@@ -1,0 +1,45 @@
+==========================================
+FIX SSH HOST KEY VERIFICATION ERROR
+==========================================
+
+The error happened because the server's host key wasn't in your known_hosts file.
+
+Run these commands to fix it:
+
+# Step 1: Add server host key to known_hosts
+ssh-keyscan -H 192.168.100.64 >> ~/.ssh/known_hosts
+
+# Step 2: Now copy your SSH key (enter password: petspot123)
+ssh-copy-id petspot@192.168.100.64
+
+# Step 3: Create SSH config
+mkdir -p ~/.ssh
+cat >> ~/.ssh/config << 'EOF'
+Host odoo-server
+    HostName 192.168.100.64
+    User petspot
+    IdentityFile ~/.ssh/id_ed25519
+EOF
+chmod 600 ~/.ssh/config
+
+# Step 4: Test connection (no password!)
+ssh odoo-server
+
+==========================================
+ALTERNATIVE: One-liner with auto-accept
+==========================================
+
+# This will automatically accept the host key and copy your key:
+ssh-keyscan -H 192.168.100.64 >> ~/.ssh/known_hosts && ssh-copy-id petspot@192.168.100.64
+
+# Then create config and test:
+mkdir -p ~/.ssh && cat >> ~/.ssh/config << 'EOF'
+Host odoo-server
+    HostName 192.168.100.64
+    User petspot
+    IdentityFile ~/.ssh/id_ed25519
+EOF
+chmod 600 ~/.ssh/config && ssh odoo-server
+
+==========================================
+

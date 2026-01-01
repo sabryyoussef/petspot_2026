@@ -1,0 +1,82 @@
+==========================================
+FIX SSH CONFIG LINE 84 ERROR
+==========================================
+
+The error suggests line 84 has a syntax problem.
+Let's check and fix it properly.
+
+==========================================
+STEP 1: Check what's on line 84
+==========================================
+
+sed -n '80,90p' ~/.ssh/config
+
+This will show lines 80-90 so you can see the context.
+
+==========================================
+STEP 2: Check if it's an indentation issue
+==========================================
+
+# "Host" should be at the start of the line (no spaces before it)
+# If there are spaces, that's the problem
+
+grep -n "^[[:space:]]*Host" ~/.ssh/config
+
+==========================================
+STEP 3: Fix it properly
+==========================================
+
+# Option A: Remove the problematic line entirely
+sed -i '84d' ~/.ssh/config
+
+# Option B: Comment it out
+sed -i '84s/^/# /' ~/.ssh/config
+
+# Option C: Fix if it's a malformed Host entry
+# First see what it is:
+sed -n '84p' ~/.ssh/config
+
+# Then fix based on what you see
+
+==========================================
+STEP 4: After fixing, add odoo-server config
+==========================================
+
+cat >> ~/.ssh/config << 'EOF'
+
+Host odoo-server
+    HostName 192.168.100.64
+    User petspot
+    IdentityFile ~/.ssh/id_ed25519
+EOF
+
+==========================================
+STEP 5: Validate the config
+==========================================
+
+ssh -F ~/.ssh/config -T odoo-server 2>&1 | head -5
+
+# Or just test:
+ssh odoo-server
+
+==========================================
+QUICKEST FIX: Remove line 84
+==========================================
+
+# Just remove the problematic line
+sed -i '84d' ~/.ssh/config
+
+# Add odoo-server config
+cat >> ~/.ssh/config << 'EOF'
+
+Host odoo-server
+    HostName 192.168.100.64
+    User petspot
+    IdentityFile ~/.ssh/id_ed25519
+EOF
+
+# Test
+ssh odoo-server
+
+==========================================
+

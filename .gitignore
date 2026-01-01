@@ -1,0 +1,60 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Odoo
+*.pyc
+*.pyo
+filestore/
+sessions/
+addons/
+*.log
+*.pot
+
+# Backup and sync state files
+sync_state.json
+backup.log
+backup_cron.log
+backup_test.log
+sync_output.log
+*.dump
+
+# PostgreSQL
+.pgpass
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+/tmp/
+

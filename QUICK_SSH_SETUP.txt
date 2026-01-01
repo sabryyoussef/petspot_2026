@@ -1,0 +1,43 @@
+==========================================
+QUICK SSH SETUP - Passwordless Login
+==========================================
+
+SERVER IS READY! ✅
+Server IP: 192.168.100.64
+User: petspot
+Password: petspot123
+
+==========================================
+ON YOUR LOCAL MACHINE, RUN THESE COMMANDS:
+==========================================
+
+# Step 1: Generate SSH key (if you don't have one)
+ssh-keygen -t ed25519
+# Press Enter 3 times to accept defaults
+
+# Step 2: Copy key to server (enter password: petspot123)
+ssh-copy-id petspot@192.168.100.64
+
+# Step 3: Create SSH config file
+mkdir -p ~/.ssh
+cat >> ~/.ssh/config << 'EOF'
+Host odoo-server
+    HostName 192.168.100.64
+    User petspot
+    IdentityFile ~/.ssh/id_ed25519
+EOF
+chmod 600 ~/.ssh/config
+
+# Step 4: Test connection (no password needed!)
+ssh odoo-server
+
+==========================================
+THAT'S IT! Now you can connect with:
+==========================================
+
+ssh odoo-server
+
+No password needed! 🎉
+
+==========================================
+

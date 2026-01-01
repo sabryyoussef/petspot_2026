@@ -1,0 +1,33 @@
+# SSH Config File Example
+# Location: ~/.ssh/config (on your LOCAL machine, not the server)
+
+# Option 1: Using SSH Keys (RECOMMENDED - Most Secure)
+# First, copy your public key to the server:
+# ssh-copy-id petspot@192.168.100.62
+# OR manually add your public key to: /home/petspot/.ssh/authorized_keys
+
+Host odoo-server
+    HostName 192.168.100.62
+    User petspot
+    IdentityFile ~/.ssh/id_ed25519
+    # Or use: IdentityFile ~/.ssh/id_rsa
+    Port 22
+    # This will use key-based auth (no password needed)
+
+# Option 2: Using sshpass (LESS SECURE - Password in command)
+# Install sshpass first: sudo apt install sshpass
+# Then use: sshpass -p 'petspot123' ssh petspot@192.168.100.62
+
+# Option 3: SSH Config with ProxyCommand and sshpass
+# (Not recommended, but works)
+Host odoo-server-pass
+    HostName 192.168.100.62
+    User petspot
+    Port 22
+    ProxyCommand sshpass -p 'petspot123' ssh -o StrictHostKeyChecking=no petspot@%h -W %h:%p
+
+# Option 4: Alias in ~/.bashrc (Easier)
+# Add this to your local machine's ~/.bashrc:
+# alias ssh-odoo='sshpass -p "petspot123" ssh petspot@192.168.100.62'
+# Then use: ssh-odoo
+

@@ -1,0 +1,55 @@
+# SSH Config File for Your LOCAL Machine
+# Copy this to: ~/.ssh/config on your LOCAL computer
+# Make sure to set permissions: chmod 600 ~/.ssh/config
+
+# ============================================
+# RECOMMENDED: Use SSH Keys (Passwordless)
+# ============================================
+# First run: ssh-copy-id petspot@192.168.100.62
+# Then use this config:
+
+Host odoo-server
+    HostName 192.168.100.62
+    User petspot
+    Port 22
+    IdentityFile ~/.ssh/id_ed25519
+    # Or: IdentityFile ~/.ssh/id_rsa
+    ServerAliveInterval 60
+    ServerAliveCountMax 3
+
+# Then connect with: ssh odoo-server
+# No password needed!
+
+# ============================================
+# ALTERNATIVE: Using sshpass (Less Secure)
+# ============================================
+# Install on local machine: sudo apt install sshpass
+# Then create an alias in ~/.bashrc:
+
+# alias ssh-odoo='sshpass -p "petspot123" ssh petspot@192.168.100.62'
+
+# Or use directly:
+# sshpass -p "petspot123" ssh petspot@192.168.100.62
+
+# ============================================
+# QUICK SETUP COMMANDS (Run on LOCAL machine)
+# ============================================
+# 
+# 1. Generate key (if you don't have one):
+#    ssh-keygen -t ed25519
+#
+# 2. Copy key to server:
+#    ssh-copy-id petspot@192.168.100.62
+#    (Enter password: petspot123)
+#
+# 3. Create config file:
+#    mkdir -p ~/.ssh
+#    chmod 700 ~/.ssh
+#    nano ~/.ssh/config
+#    (Paste the Host odoo-server section above)
+#    chmod 600 ~/.ssh/config
+#
+# 4. Test connection:
+#    ssh odoo-server
+#    (Should connect without password!)
+

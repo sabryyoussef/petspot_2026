@@ -1,0 +1,43 @@
+==========================================
+RUN THESE COMMANDS IN YOUR TERMINAL
+==========================================
+
+You're already on the server, so run these commands:
+
+# Step 1: Add server host key to known_hosts
+ssh-keyscan -H 192.168.100.64 >> ~/.ssh/known_hosts
+
+# Step 2: Copy your SSH key to server (enter password: petspot123)
+ssh-copy-id petspot@192.168.100.64
+
+# Step 3: Create SSH config
+mkdir -p ~/.ssh
+cat >> ~/.ssh/config << 'EOF'
+Host odoo-server
+    HostName 192.168.100.64
+    User petspot
+    IdentityFile ~/.ssh/id_ed25519
+EOF
+chmod 600 ~/.ssh/config
+
+# Step 4: Test connection (should work without password now!)
+ssh odoo-server
+
+==========================================
+OR RUN ALL AT ONCE:
+==========================================
+
+ssh-keyscan -H 192.168.100.64 >> ~/.ssh/known_hosts && \
+ssh-copy-id petspot@192.168.100.64 && \
+mkdir -p ~/.ssh && \
+cat >> ~/.ssh/config << 'EOF'
+Host odoo-server
+    HostName 192.168.100.64
+    User petspot
+    IdentityFile ~/.ssh/id_ed25519
+EOF
+chmod 600 ~/.ssh/config && \
+echo "✓ Setup complete! Test with: ssh odoo-server"
+
+==========================================
+

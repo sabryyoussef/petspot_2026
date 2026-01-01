@@ -1,0 +1,81 @@
+{
+    'name': 'Veterinary Clinic',
+    'version': '1.0',
+    'category': 'Health and Fitness',
+    'author': 'Odoo S.A.',
+    'depends': [
+        'base_industry_data',
+        'crm',
+        'sale_crm',
+        'sale_management',
+        'project',
+        'website_crm',
+        'website_sale',
+        'calendar',
+        'stock',
+    ],
+    'data': [
+        # Core model definitions
+        'data/ir_model.xml',
+        'data/ir_model_fields.xml',
+        'data/ir_model_access.xml',
+        
+        # UI and menus
+        'data/ir_ui_view.xml',
+        'data/ir_ui_menu.xml',
+        'data/ir_actions_act_window.xml',
+        
+        # Basic data
+        'data/x_species.xml',
+        'data/x_species_line.xml',
+        'data/x_illnesses.xml',
+        'data/x_vaccines.xml',
+        'data/crm_stage.xml',
+        'data/crm_tag.xml',
+        
+        # Commented out - causing errors or enterprise dependencies
+        # 'data/res_config_settings.xml',
+        # 'data/base_automation.xml',
+        # 'data/ir_actions_server.xml',
+        # 'data/ir_default.xml',
+        # 'data/ir_sequence.xml',
+        # 'data/ir_attachment_post.xml',
+        # 'data/project_task_type.xml',
+        # 'data/project_project.xml',
+        # 'data/product_category.xml',
+        # 'data/product_template.xml',
+        # 'data/product_attribute.xml',
+        # 'data/product_attribute_value.xml',
+        # 'data/product_template_attribute_line.xml',
+        # 'data/product_template_attribute_value.xml',
+        # 'data/product_product.xml',
+        # 'data/sale_order_template.xml',
+        # 'data/sale_order_template_line.xml',
+        # 'data/mail_message.xml',
+        # 'data/pos_config.xml',
+    ],
+    'demo': [
+        # 'demo/appointment_type.xml',  # Requires website_appointment (enterprise)
+        'demo/crm_team.xml',
+        'demo/pos_session.xml',
+        'demo/res_partner.xml',
+        'demo/x_pets.xml',
+        'demo/calendar_event.xml',
+        'demo/crm_lead.xml',
+        'demo/ir_attachment_post.xml',
+        'demo/sale_order.xml',
+        'demo/sale_order_line.xml',
+        'demo/stock_warehouse_orderpoint.xml',
+        'demo/website_view.xml',
+        'demo/website_theme_apply.xml',
+        'demo/website.xml',
+    ],
+    'license': 'OEEL-1',
+    'cloc_exclude': [
+        # 'data/knowledge_article.xml',  # Removed - enterprise dependency
+        'demo/website_view.xml',
+    ],
+    'images': ['images/main.png'],
+    'url': "https://www.odoo.com/trial?industry&selected_app=veterinary_clinic",
+    'website': "https://www.odoo.com/all-industries",
+}

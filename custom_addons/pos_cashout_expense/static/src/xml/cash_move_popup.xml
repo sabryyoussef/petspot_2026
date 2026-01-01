@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="point_of_sale.CashMovePopup" t-inherit="point_of_sale.CashMovePopup" t-inherit-mode="extension" owl="1">
+        <xpath expr="//button[text()='Details']/parent::div" position="inside">
+            <button 
+                t-if="state.type === 'out'"
+                class="button btn btn-lg lh-lg" 
+                t-att-class="state.cashOutConfirmed and state.lastStatementLineId ? 'btn-primary' : 'btn-secondary'"
+                t-on-click="() => this.openExpenseForm()"
+                t-att-disabled="!state.cashOutConfirmed or !state.lastStatementLineId"
+                t-att-title="state.cashOutConfirmed and state.lastStatementLineId ? 'Open expense form' : 'Please confirm cash out first'">
+                Add to Expense
+            </button>
+        </xpath>
+    </t>
+
+</templates>
+

@@ -1,0 +1,8 @@
+# Requirements for Odoo Sync Script
+# Python 3.6+ required
+
+# No external dependencies needed - uses built-in Python libraries:
+# - xmlrpc.client (for Odoo XML-RPC API)
+# - json (for state tracking)
+# - datetime (for timestamps)
+
