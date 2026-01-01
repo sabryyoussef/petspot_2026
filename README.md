@@ -25,7 +25,7 @@ Enterprise Odoo 19 instance for PetSpot veterinary practice management with cust
 
 #### 🔄 Database Backup System
 - **Location**: `/home/petspot/Dropbox/odoo_backups/`
-- **Schedule**: Daily at 2:00 AM
+- **Schedule**: Twice daily at 1:00 PM and 10:00 PM (business hours)
 - **Format**: PostgreSQL custom format (-Fc) with compression
 - **Retention**: 7 days (auto-cleanup)
 - **Verification**: Automatic integrity checks after each backup

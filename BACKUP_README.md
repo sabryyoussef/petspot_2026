@@ -4,7 +4,7 @@
 Automated daily backup system for Odoo databases to Dropbox folder.
 - **Databases**: `petspot` and `petspot_dev`
 - **Backup Location**: `/home/petspot/Dropbox/odoo_backups/`
-- **Schedule**: Daily at 2:00 AM
+- **Schedule**: Twice daily at 1:00 PM and 10:00 PM (during business hours)
 - **Retention**: 7 days (older backups automatically deleted)
 
 ## Files Created
@@ -96,8 +96,9 @@ pg_restore -U odoo19 -d petspot -t res_partner ~/Dropbox/odoo_backups/petspot_20
 ## Backup Schedule
 
 ### Current Schedule
-The backup runs automatically:
-- **Time**: 2:00 AM daily
+The backup runs automatically twice daily during business hours:
+- **1:00 PM (13:00)** - Beginning of business day
+- **10:00 PM (22:00)** - End of business day
 - **All databases**: petspot, petspot_dev
 
 ### View Cron Schedule
@@ -112,10 +113,10 @@ crontab -e
 ```
 
 Cron time format: `minute hour day month weekday`
-- Daily at 3 AM: `0 3 * * *`
-- Daily at midnight: `0 0 * * *`
-- Twice daily (2 AM & 2 PM): `0 2,14 * * *`
-- Every 6 hours: `0 */6 * * *`
+- Current setting (1 PM & 10 PM): `0 13 * * *` and `0 22 * * *`
+- Once at 2 PM: `0 14 * * *`
+- Three times (1 PM, 5 PM, 10 PM): `0 13,17,22 * * *`
+- Every 3 hours during business (1 PM, 4 PM, 7 PM, 10 PM): `0 13,16,19,22 * * *`
 
 ## Backup Configuration
 
